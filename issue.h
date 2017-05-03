@@ -70,7 +70,7 @@ void Issue::checkStatus(int issueNum)
 
     std::ifstream issueIn;
 
-    std::string numStr = std::to_string(issueNum);
+    std::string issueNumStr = std::to_string(issueNum);
 
     inDocument = genDoc("issues.json");
 
@@ -93,7 +93,7 @@ void Issue::checkStatus(int issueNum)
 
         }
 
-    Value& checkIssue = issues[numStr.c_str()];
+    Value& checkIssue = issues[issueNumStr.c_str()];
 
     Value& status = checkIssue["Status"];
 
@@ -139,7 +139,6 @@ void Issue::changeStatus(int issueNum, std::string newStatus)
         }
     }
 
-    Value& issues = inDocument["Issues"];
     Value& issObj = issues[issueNumStr.c_str()];
     Value& StatObj = issObj["Status"];
 
