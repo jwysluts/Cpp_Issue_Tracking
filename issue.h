@@ -72,7 +72,7 @@ void Issue::checkStatus(int issueNum)
 
     std::string numStr = std::to_string(issueNum);
 
-    inDocument = genDoc("issues_1.json");
+    inDocument = genDoc("issues.json");
 
     bool issueExists = false;
 
@@ -106,7 +106,7 @@ void Issue::changeStatus(int issueNum, std::string newStatus)
 {
     Document inDocument;
 
-    inDocument = genDoc("issues_1.json");
+    inDocument = genDoc("issues.json");
 
     std::string issueNumStr=std::to_string(issueNum), oldStatus;
     bool issueExists = false;
@@ -150,7 +150,7 @@ void Issue::changeStatus(int issueNum, std::string newStatus)
     Writer<StringBuffer> writer(buffer);
     inDocument.Accept(writer);
 
-    std::string fileName = "issues_1.json";
+    std::string fileName = "issues.json";
     const char* output = buffer.GetString();
     std::ofstream issueOut;
     issueOut.open(fileName.c_str(), std::ios::binary);
@@ -167,7 +167,7 @@ void Issue::createIssue()
     Document newIssue(&inDocument.GetAllocator());
     Value issObj(kObjectType);
 
-    inDocument = genDoc("issues_1.json");
+    inDocument = genDoc("issues.json");
 
     Value& issues = inDocument["Issues"];
 
@@ -213,7 +213,7 @@ void Issue::createIssue()
     Writer<StringBuffer> writer(buffer);
     inDocument.Accept(writer);
 
-    std::string fileName = "issues_1.json";
+    std::string fileName = "issues.json";
     const char* output = buffer.GetString();
     issueOut.open(fileName.c_str(),std::ios::binary);
     issueOut<<output;
@@ -224,7 +224,7 @@ void Issue::createIssue()
 
 void Issue::findIssue(int issueNum)
 {
-    Document inDocument = genDoc("issues_1.json");
+    Document inDocument = genDoc("issues.json");
 
     std::string issueNumStr = std::to_string(issueNum);
 
@@ -260,7 +260,7 @@ void Issue::help()
 
 void Issue::getExistingIssues(std::string status)
 {
-    Document inDocument = genDoc("issues_1.json");
+    Document inDocument = genDoc("issues.json");
 
     while(status!="Open" && status!="Pending Solution" && status!="Moved" && status!="Closed" && status!= "All")
     {
@@ -303,7 +303,7 @@ void Issue::updateIssue(int issueNum)
 {
     std::string update, issueNumStr=std::to_string(issueNum);
     std::ofstream issueOut;
-    Document inDocument = genDoc("issues_1.json");
+    Document inDocument = genDoc("issues.json");
 
     bool issueExists = false;
 
@@ -360,7 +360,7 @@ void Issue::updateIssue(int issueNum)
     Writer<StringBuffer> writer(buffer);
     inDocument.Accept(writer);
 
-    std::string fileName = "issues_1.json";
+    std::string fileName = "issues.json";
     const char* output = buffer.GetString();
     issueOut.open(fileName.c_str(),std::ios::binary);
     issueOut<<output;
